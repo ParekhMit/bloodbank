@@ -1,0 +1,128 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+
+
+	<!-- login -->
+	<section class="logins py-5">
+		<div class="container py-xl-5 py-lg-3">
+			<div class="title-section mb-md-5 mb-4">
+				<h6 class="w3ls-title-sub"></h6>
+				<h3 class="w3ls-title text-uppercase text-dark font-weight-bold">Fill Prediction Data for Thalasemia</h3>
+			</div><hr/>
+			<div class="login px-sm-4 mx-auto mw-100 login-wrapper">
+				<form class="login-wrapper" action="" method="post">
+					{% csrf_token %}
+					<div class="form-group row">
+                        <div class="col-3">
+                            <label>User</label>
+                            <select class="form-control" name="user">
+                                <option>Select User</option>
+                                {% for i in user %}
+                                <option value="{{i.user.id}}">{{i.user.username}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-1">
+                            <label>Age</label>
+                            <input type="text" class="form-control" name="age" placeholder="Age" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>Sex</label>
+                            <input type="text" class="form-control" name="sex" placeholder="Sex" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>HB</label>
+                            <input type="text" class="form-control" name="hb" placeholder="HB" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>PCV</label>
+                            <input type="text" class="form-control" name="pcv" placeholder="PCV" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>RBC</label>
+                            <input type="text" class="form-control" name="rbc" placeholder="RBC" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>MCV</label>
+                            <input type="text" class="form-control" name="mcv" placeholder="MCV" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>MCH</label>
+                            <input type="text" class="form-control" name="mch" placeholder="MCH" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>MCHC</label>
+                            <input type="text" class="form-control" name="mchc" placeholder="MCHC" required="">
+                        </div>
+                        <div class="col-1">
+                            <label>RDW</label>
+                            <input type="text" class="form-control" name="rdw" placeholder="RDW" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>WBC</label>
+                            <input type="text" class="form-control" name="wbc" placeholder="WBC" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>NEUT</label>
+                            <input type="text" class="form-control" name="neut" placeholder="NEUT" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>LYMPH</label>
+                            <input type="text" class="form-control" name="lymph" placeholder="LYMPH" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>PLT</label>
+                            <input type="text" class="form-control" name="plt" placeholder="PLT" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>HBA</label>
+                            <input type="text" class="form-control" name="hba" placeholder="HBA" required="">
+                        </div>
+                        <div class="col-1">
+                            <label>HBA2</label>
+                            <input type="text" class="form-control" name="hba2" placeholder="HBA2" required="">
+                        </div>
+
+                        <div class="col-1">
+                            <label>HBF</label>
+                            <input type="text" class="form-control" name="hbf" placeholder="HBF" required="">
+                        </div>
+
+
+
+
+                    </div>
+
+					<button type="submit" class="btn btn-primary submit mt-4">Predict</button>
+
+				</form>
+			</div><br/><br/>
+            {% if final %}
+            <div class="card p-4 text-center">
+                <h4><span style="color:red">Result</span> :<br/> <span style="color:green">
+                {% for i,j in predictions.items %}
+                    <span style="color:blue">{{i}}</span> = {{j}}<br>
+                {% endfor %}
+                </span></h4>
+                <h4><span style="color:red">Accuracy Score</span> = <span style="color:green">{{accuracy_score}}</span></h4>
+                <h4><span style="color:red">Final Output is</span> <span style="color:green">{{final}}</span></h4>
+            </div>
+            {% endif %}
+		</div>
+	</section>
+	<!-- //login -->
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'index.html' %}
+{% load static %}
+{% block body %}
+
+	<section class="logins py-5">
+		<div class="container py-xl-5 py-lg-3">
+			<div class="title-section mb-md-5 mb-4">
+				<h6 class="w3ls-title-sub"></h6>
+				<h3 class="w3ls-title text-uppercase text-dark font-weight-bold">Confirm Detail</h3>
+			</div><hr/>
+			<div class="login px-sm-12" style="width:100%">
+				<form action="" method="post" enctype="multipart/form-data">
+					{% csrf_token %}
+					
+					<div class="form-group row">
+						<div class="col-md-6">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username" placeholder="Username" value="{{request.user.username}}" required readonly>
+						</div>
+						<div class="col-md-6">
+                            <label>Email</label>
+                            <input type="email" class="form-control" name="email" placeholder="Enter Email" required="" value="{{request.user.email}}" readonly>
+                        </div>
+					</div>
+					
+                    <div class="form-group row">
+                        <div class="col-md-6">
+                            <label>Address</label>
+                            <input type="text" name="add" class="form-control" placeholder="Address" value="{{request.user.userprofile_set.all.0.address}}" style="margin-right:4%" required= readonly>          
+                        </div>
+                        <div class="col-md-6">
+                            <label>Pincode</label>
+                            <input type="text" name="pin" class="form-control" placeholder="Pincode" maxlength="6" value="{{request.user.userprofile_set.all.0.pincode}}" minlegth="6" style="margin-right:4%" required readonly>          
+                        </div>
+                    </div>
+					
+
+					  <div class="form-group row">
+						<div class="col-md-6">
+							<label>Unit of blood</label>
+							<input type="text" name="unit" class="form-control" placeholder="Unit of blood" style="margin-right:4%" required="">          
+						</div>
+						<div class="col-md-6">
+							<label>Write purpose for blood</label>
+							<textarea class="form-control" placeholder="Write purpose for blood" name="desc" required></textarea>
+						</div>
+					  </div>
+
+
+					  
+					<button type="submit" class="btn btn-primary submit mt-4">Submit</button>
+				</form>
+			</div>
+		</div>
+	</section>
+	<!-- //register -->
+
+
+
+{% endblock %}
